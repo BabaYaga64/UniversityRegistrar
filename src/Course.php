@@ -93,7 +93,7 @@
            //from the join table where student ids are stored with course ids
            //return the student ids which correspond to course ids equal to the current course id.
         function getStudents(){
-            $query = $GLOBALS['DB']->exec("SELECT student_id FROM students_courses WHERE course_id= {$this->getId()};");
+            $query = $GLOBALS['DB']->query("SELECT student_id FROM students_courses WHERE course_id= {$this->getId()};");
             $student_id= $query->fetchAll(PDO::FETCH_ASSOC);
             $student_array= array();
 
@@ -103,10 +103,10 @@
                 $student_id = $id['student_id'];
 
                 //get all students matching the current student id out of the students table (including their name, id, course_number ).
-                $student= $GLOBALS['DB']->exec("SELECT * FROM students WHERE id= {$student_id};");
+                $student= $GLOBALS['DB']->query("SELECT * FROM students WHERE id= {$student_id};");
                 $returned_students= $student->fetchAll(PDO::FETCH_ASSOC);
                 $name=$returned_students[0]['name'];
-                $course_number=$returned_students[0]['course_number'];
+                $course_number=$returned_students[0]['enroll_date'];
                 $id=$returned_students[0]['id'];
 
                 $new_student = new Student($name, $id, $course_number);

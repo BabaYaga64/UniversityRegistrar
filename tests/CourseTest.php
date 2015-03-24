@@ -9,10 +9,10 @@
     class CourseTest extends PHPUnit_Framework_TestCase
     {
         protected function tearDown()
-        {
-            Course::deleteAll();
-            //Student::deleteAll();
-        }
+         {
+             Course::deleteAll();
+             Student::deleteAll();
+         }
         //Initialize a Course with a name and be able to get it back out of the object using getName().
         function testGetName()
         {
@@ -80,7 +80,7 @@
             $test_class->save();
             //Act
             $result = Course::getAll();
-            var_dump($result);
+
             //Assert
             $this->assertEquals($test_class, $result[0]);
         }
@@ -144,8 +144,7 @@
             $result = Course::getAll();
             $this->assertEquals([], $result);
         }
-        // //Test for find class method.
-        // //Static method to select a class using its id number as input.
+
         function testFind()
         {
             //Arrange
@@ -160,13 +159,9 @@
             $number2 = 200808;
             $test_class2 = new Course($name2, $id2, $number);
             $test_class2->save();
-            //Act
-            //search using the id of the first class.
+
             $result = Course::find($test_class->getId());
-            //Assert
-            //if the search function works then result should be the first class.
-            //ids are unique so this method will always return a single instance.
-            //no need for returning an array like in getAll.
+
             $this->assertEquals($test_class, $result);
         }
         function testUpdate()
@@ -201,31 +196,26 @@
             //Assert
             $this->assertEquals([$test_class2], Course::getAll());
         }
-        //This addStudent() method will assign a Student object to the current Course object by saving their ids in the join table.
-        // function testAddStudent()
-        // {
-        //     //Arrange
-        //     //We need a class and a student saved
-        //     $name = "Work stuff";
-        //     $id = 1;
-        //
-        //     $test_class = new Course($name, $id, $number);
-        //     $test_class->save();
-        //     $description = "File reports";
-        //     $id2 = 2;
-        //     $test_student = new Student($description, $id2);
-        //     $test_student->save();
-        //     //Act
-        //     //call add student method on test class to assign test student to it.
-        //     //add student method takes an entire Student object as input and assigns it to the class the method has been called on.
-        //     $test_class->addStudent($test_student);
-        //     //Assert
-        //     //now if we get the students associated with the class we should get the one we assigned back
-        //     //our test student should be returned in an array because there can be more than one student associated with a class.
-        //     //we still need to write the getStudents() method to get the students associated with the class,
-        //     //but now we know how we want to use it.
-        //     $this->assertEquals($test_class->getStudents(), [$test_student]);
-        // }
+
+        function testAddStudent()
+        {
+            //Arrange
+            //We need a class and a student saved
+            $name = "Work stuff";
+            $id = 1;
+            $number = 200808;
+            $test_class = new Course($name, $id, $number);
+            $test_class->save();
+            $description = "File reports";
+            $id2 = 2;
+            $date='1909-09-08 12:00:00';
+            $test_student = new Student($description, $id2,$date);
+            $test_student->save();
+
+            $test_class->addStudent($test_student);
+
+            $this->assertEquals($test_class->getStudents(), [$test_student]);
+        }
         // //Now we write a test for the getStudents method since we need it to be able to test the Add Student method.
         // function testGetStudents()
         // {
