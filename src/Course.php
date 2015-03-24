@@ -84,23 +84,29 @@ Class Course
     //return the student ids which correspond to course ids equal to the current course id.
     function getStudents()
     {
-        $query         = $GLOBALS['DB']->query("SELECT student_id FROM students_courses WHERE course_id= {$this->getId()};");
-        $student_id    = $query->fetchAll(PDO::FETCH_ASSOC);
+        $query         = $GLOBALS['DB']->query("SELECT students.* FROM
+            courses JOIN students_courses ON (courses.id = students_courses.course_id)
+            JOIN students ON (students_courses.student_id = students.id) WHERE courses.id = {$this->getId()};");
+
+
+
+
+        // $student_id    = $query->fetchAll(PDO::FETCH_ASSOC);
         $student_array = array();
-        foreach ($student_id as $id) {
+        foreach ($query as $student) {
             //pull out its value with the key 'student_id' and store it in variable $student_id
-            $student_id        = $id['student_id'];
+            // $student_id        = $id['student_id'];
             //get all students matching the current student id out of the students table (including their name, id, course_number ).
-            $student           = $GLOBALS['DB']->query("SELECT * FROM students WHERE id= {$student_id};");
-            $returned_students = $student->fetchAll(PDO::FETCH_ASSOC);
+            // $student           = $GLOBALS['DB']->query("SELECT * FROM students WHERE id= {$student_id};");
+            // $returned_students = $student->fetchAll(PDO::FETCH_ASSOC);
 
 
-            $name              = $returned_students[0]['name'];
-            $id                = $returned_students[0]['id'];
-            $date    = $returned_students[0]['enroll_date'];
+            $name              = $student['name'];
+            $id                = $student['id'];
+            $date    = $student['enroll_date'];
             $new_student       = new Student($name, $id, $date);
             array_push($student_array, $new_student);
-    
+
 
         }
         return $student_array;

@@ -1,0 +1,29 @@
+<html>
+    <head>
+        <title>{{ course.getName}}</title>
+    </head>
+    <body>
+<h1>{{ course.getName}} {{ course.getNumber}}</h1>
+
+<select>
+    <form  action="/add_student" method="post">
+
+
+        <label for="student_id">Select a Student</label>
+        {% for student in students %}
+        <select>
+        <option value="{{ student.getId }}">{{ student.getName }}</option>
+        {% endfor %}
+    </select>
+
+
+        <button name="submit">Add this Student</button>
+    </form>
+
+
+</select>
+
+    </body>
+
+
+</html>

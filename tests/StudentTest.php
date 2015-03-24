@@ -216,7 +216,7 @@
             $this->assertEquals([$test_student2], Student::getAll());
         }
         //Now add methods to add a course to a student, and get all the categories associated with the current student.
-        function testAddCourses()
+        function testAddCourse()
         {
             //Arrange
             $name = "HIS324";
