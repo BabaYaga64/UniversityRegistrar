@@ -19,7 +19,7 @@
         {
             //Arrange
             $id = 1;
-            $name = "Do dishes.";
+            $name = "Bojana";
             $date='1909-09-08 12:00:00';
             $test_student = new Student($name,$id,$date);
             //No need to save here because we are communicating with the object only and not the database.
@@ -32,15 +32,15 @@
         { //can I change the name in the object with setName() after initializing it?
             //Arrange
             $id = 1;
-            $name = "Do dishes.";
+            $name = "Bojana";
             $date='1909-09-08 12:00:00';
             $test_student = new Student($name,$id,$date);
             //No need to save here because we are communicating with the object only and not the database.
             //Act
-            $test_student->setName("Drink coffee.");
+            $test_student->setName("Abeer");
             $result = $test_student->getName();
             //Assert
-            $this->assertEquals("Drink coffee.", $result);
+            $this->assertEquals("Abeer", $result);
         }
         //Next, let's add the Id. property to our Student class. Like any other property it needs a getter and setter.
         //Create a Student with the id in the constructor and be able to get the id back out.
@@ -48,7 +48,7 @@
         {
             //Arrange
             $id = 1;
-            $name = "Wash the dog";
+            $name = "David";
             $date='1909-09-08 12:00:00';
             $test_student = new Student($name, $id,$date);
             //Act
@@ -61,7 +61,7 @@
         {
             //Arrange
             $id = 1;
-            $name = "Wash the dog";
+            $name = "David";
             $date='1909-09-08 12:00:00';
             $test_student = new Student($name, $id,$date);
             //Act
@@ -75,7 +75,7 @@
         {
             //Arrange
             //create a new student
-            $name = "Wash the dog";
+            $name = "David";
             $date='1909-09-08 12:00:00';
             $id = 1;
             $test_student = new Student($name, $id,$date);
@@ -94,7 +94,7 @@
         {
             //Arrange
             //create new student
-            $name = "Wash the dog";
+            $name = "David";
             $id = 1;
             $date='1909-09-08 12:00:00';
             $test_student = new Student($name, $id,$date);
@@ -113,12 +113,12 @@
         {
             //Arrange
             //Create and save more than one Student object.
-            $name = "Wash the dog";
+            $name = "David";
             $id = 1;
             $date='1909-09-08 12:00:00';
             $test_student = new Student($name, $id,$date);
             $test_student->save();
-            $name2 = "Water the lawn";
+            $name2 = "Sally";
             $id2 = 2;
             $test_student2 = new Student($name2, $id2,$date);
             $test_student2->save();
@@ -137,12 +137,12 @@
         {
             //Arrange
             //We need some students saved into the database so that we can make sure our deleteAll method removes them all.
-            $name = "Wash the dog";
+            $name = "David";
             $id = 1;
             $date='1909-09-08 12:00:00';
             $test_student = new Student($name, $id,$date);
             $test_student->save();
-            $name2 = "Water the lawn";
+            $name2 = "Sally";
             $id2 = 2;
             $test_student2 = new Student($name2, $id2,$date);
             $test_student2->save();
@@ -166,12 +166,12 @@
             //Arrange
             //To test a search function we must have some students to search through.
             //Create and save 2 students.
-            $name = "Wash the dog";
+            $name = "David";
             $id = 1;
             $date='1909-09-08 12:00:00';
             $test_student = new Student($name, $id,$date);
             $test_student->save();
-            $name2 = "Water the lawn";
+            $name2 = "Sally";
             $id2 = 2;
             $test_student2 = new Student($name2, $id2,$date);
             $test_student2->save();
@@ -184,91 +184,99 @@
             //we should get the same object back out of the search as the one we were looking for if our search works correctly.
             $this->assertEquals($test_student, $result);
         }
-        // function testUpdate()
-        // {
-        //     //Arrange
-        //     $name = "Wash the dog";
-        //     $id = 1;
-        //     $test_student = new Student($name, $id);
-        //     $test_student->save();
-        //     $new_name = "Clean the dog";
-        //     //Act
-        //     $test_student->update($new_name);
-        //     //Assert
-        //     $this->assertEquals("Clean the dog", $test_student->getName());
-        // }
-        // function testDeleteTask()
-        // {
-        //     //Arrange
-        //     $name = "Wash the dog";
-        //     $id = 1;
-        //     $test_student = new Student($name, $id);
-        //     $test_student->save();
-        //     $name2 = "Water the lawn";
-        //     $id2 = 2;
-        //     $test_student2 = new Student($name2, $id2);
-        //     $test_student2->save();
-        //     //Act
-        //     $test_student->delete();
-        //     //Assert
-        //     $this->assertEquals([$test_student2], Student::getAll());
-        // }
-        // //Now add methods to add a course to a student, and get all the categories associated with the current student.
-        // function testAddCourses()
-        // {
-        //     //Arrange
-        //     $name = "Work stuff";
-        //     $id = 1;
-        //     $test_course = new Course($name, $id);
-        //     $test_course->save();
-        //     $name = "File reports";
-        //     $id2 = 2;
-        //     $test_student = new Student($name, $id2);
-        //     $test_student->save();
-        //     //Act
-        //     $test_student->addCourses($test_course);
-        //     //Assert
-        //     $this->assertEquals($test_student->getCategories(), [$test_course]);
-        // }
-        // function testGetCategories()
-        // {
-        //     //Arrange
-        //     $name = "Work stuff";
-        //     $id = 1;
-        //     $test_course = new Course($name, $id);
-        //     $test_course->save();
-        //     $name2 = "Volunteer stuff";
-        //     $id2 = 2;
-        //     $test_course2 = new Course($name2, $id2);
-        //     $test_course2->save();
-        //     $name = "File reports";
-        //     $id3 = 3;
-        //     $test_student = new Student($name, $id3);
-        //     $test_student->save();
-        //     //Act
-        //     $test_student->addCourses($test_course);
-        //     $test_student->addCourses($test_course2);
-        //     //Assert
-        //     $this->assertEquals($test_student->getCategories(), [$test_course, $test_course2]);
-        // }
-        // //When we call delete on a student it should delete all mention of that student from both the students table and the join table.
-        // function testDelete()
-        // {
-        //     //Arrange
-        //     $name = "Work stuff";
-        //     $id = 1;
-        //     $test_course = new Course($name, $id);
-        //     $test_course->save();
-        //     $name = "File reports";
-        //     $id2 = 2;
-        //     $test_student = new Student($name, $id2);
-        //     $test_student->save();
-        //     //Act
-        //     $test_student->addCourses($test_course);
-        //     $test_student->delete();
-        //     //Assert
-        //     $this->assertEquals([], $test_course->getTasks());
-        // }
+        function testUpdate()
+        {
+            //Arrange
+            $name = "David";
+            $id = 1;
+            $date='1909-09-08 12:00:00';
+            $test_student = new Student($name, $id,$date);
+            $test_student->save();
+            $new_name = "Clean the dog";
+            //Act
+            $test_student->update($new_name);
+            //Assert
+            $this->assertEquals("Clean the dog", $test_student->getName());
+        }
+        function testDeleteTask()
+        {
+            //Arrange
+            $name = "David";
+            $id = 1;
+            $date='1909-09-08 12:00:00';
+            $test_student = new Student($name, $id,$date);
+            $test_student->save();
+            $name2 = "Sally";
+            $id2 = 2;
+            $test_student2 = new Student($name2, $id2,$date);
+            $test_student2->save();
+            //Act
+            $test_student->delete();
+            //Assert
+            $this->assertEquals([$test_student2], Student::getAll());
+        }
+        //Now add methods to add a course to a student, and get all the categories associated with the current student.
+        function testAddCourses()
+        {
+            //Arrange
+            $name = "HIS324";
+            $id = 1;
+            $number = 909098;
+            $test_course = new Course($name, $id,$number);
+            $test_course->save();
+            $name = "File reports";
+            $id2 = 2;
+            $date='1909-09-08 12:00:00';
+            $test_student = new Student($name, $id2,$date);
+            $test_student->save();
+            //Act
+            $test_student->addCourse($test_course);
+            //Assert
+            $this->assertEquals($test_student->getCourses(), [$test_course]);
+        }
+        function testGetCourses()
+        {
+            //Arrange
+            $name = "HIS324";
+            $id = 1;
+            $number = 909098;
+            $test_course = new Course($name, $id,$number);
+            $test_course->save();
+            $name2 = "Volunteer stuff";
+            $id2 = 2;
+            $test_course2 = new Course($name2, $id2,$number);
+            $test_course2->save();
+            $name = "File reports";
+            $id3 = 3;
+            $date='1909-09-08 12:00:00';
+            $test_student = new Student($name, $id3,$date);
+            $test_student->save();
+            //Act
+            $test_student->addCourse($test_course);
+            $test_student->addCourse($test_course2);
+            //Assert
+            $this->assertEquals($test_student->getCourses(), [$test_course, $test_course2]);
+        }
+        //When we call delete on a student it should delete all mention of that student from both the students table and the join table.
+        function testDelete()
+        {
+            //Arrange
+            $name = "HIS324";
+            $id = 1;
+            $number = 909098;
+            $test_course = new Course($name, $id,$number);
+            $test_course->save();
+            $name = "Baby";
+            $id2 = 2;
+            $date='1909-09-08 12:00:00';
+            $test_student = new Student($name, $id2,$date);
+            $test_student->save();
+            //Act
+            $test_student->addCourse($test_course);
+            $test_student->delete();
+            //Assert
+            $this->assertEquals([], $test_course->getStudents());
+        }
 
     }
 ?>
