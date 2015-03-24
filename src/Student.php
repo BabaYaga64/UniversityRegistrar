@@ -61,7 +61,8 @@
 
         static function deleteAll()
         {
-            $GLOBALS['DB']->exec("DELETE FROM  students *;");
+            $GLOBALS['DB']->exec("DELETE FROM students *;");
+            $GLOBALS['DB']->exec("DELETE FROM students_courses *;");
         }
 
         function addCourse($new_course){
@@ -70,14 +71,17 @@
 
         function getCourses()
         {
-            $query = $GLOBALS['DB']->query("SELECT course_id FROM students_coureses WHERE student_id = {$this->getId()};");
+            $query = $GLOBALS['DB']->query("SELECT course_id FROM students_courses WHERE student_id = {$this->getId()};");
             $course_ids = $query->fetchAll(PDO::FETCH_ASSOC);
 
             $courses = array();
             foreach($course_ids as $id) {
                 $course_id = $id['course_id'];
                 $result = $GLOBALS['DB']->query("SELECT * FROM courses WHERE id = {$course_id};");
+
                 $returned_course = $result->fetchAll(PDO::FETCH_ASSOC);
+
+                var_dump( $returned_course);
 
                 $name = $returned_course[0]['name'];
                 $id = $returned_course[0]['id'];
@@ -95,11 +99,25 @@ $GLOBALS['DB']->exec("UPDATE students SET name = '{$new_name}' WHERE id = {$this
                 }
                 function delete()
                 {
-                    //delete any tasks from the tasks table where their id matches the current one.
-                    $GLOBALS['DB']->exec("DELETE FROM  students WHERE id = {$this->getId()};");
+                    //delete any studentfrom the tasks table where their id matches the current one.
+                    $GLOBALS['DB']->exec("DELETE FROM students WHERE id = {$this->getId()};");
                     //also delete any rows from the categories_tasks table where the task id is the current one.
                     $GLOBALS['DB']->exec("DELETE FROM students_courses WHERE student_id = {$this->getId()};");
                 }
+
+    static function find($search_id)
+        {
+            $found_student = null;
+            $student= Student::getAll();
+            foreach($student as $student) {
+                $student_id = $student->getId();
+                if ($student_id == $search_id) {
+                  $found_student = $student;
+                }
+            }
+            return $found_student;
+        }
+
 
     }
 

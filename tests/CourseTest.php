@@ -17,7 +17,7 @@
         function testGetName()
         {
             //Arrange
-            $name = "Kitchen chores";
+            $name = "Abeer";
             $number = 909098;
             $id=3;
             $test_class = new Course($name,$id, $number);
@@ -30,16 +30,16 @@
         function testSetName()
         { //can I change the name in the object with setName() after initializing it?
             //Arrange
-            $name = "Kitchen chores";
+            $name = "Abeer";
             $number = 909098;
             $id=3;
             $test_class = new Course($name,$id, $number);
             //No need to save here because we are communicating with the object only and not the database.
             //Act
-            $test_class->setName("Home chores");
+            $test_class->setName("Molly");
             $result = $test_class->getName();
             //Assert
-            $this->assertEquals("Home chores", $result);
+            $this->assertEquals("Molly", $result);
         }
         //Next, let's add the Id property to our Course class. Like any other property it needs a getter and setter.
         //Create a Course with the id in the constructor and be able to get the id back out.
@@ -48,7 +48,7 @@
             //Arrange
             $id = 1;
             $number = 909098;
-            $name = "Kitchen chores";
+            $name = "Abeer";
             $test_class = new Course($name, $id, $number);
             //Act
             $result = $test_class->getId();
@@ -61,7 +61,7 @@
             //Arrange
             $id = 1;
             $number = 909098;
-            $name = "Kitchen chores";
+            $name = "Abeer";
             $test_class = new Course($name, $id, $number);
             //Act
             $test_class->setId(2);
@@ -73,7 +73,7 @@
         function testSave()
         {
             //Arrange
-            $name = "Work stuff";
+            $name = "Bojana";
             $id = 1;
             $number = 909098;
             $test_class = new Course($name, $id, $number);
@@ -88,7 +88,7 @@
         function testSaveSetsId()
         {
             //Arrange
-            $name = "Work stuff";
+            $name = "Bojana";
             $number = 200808;
             $id = 1;
             $test_class = new Course($name, $id, $number);
@@ -105,12 +105,12 @@
         function testGetAll()
         {
             //Arrange
-            $name = "Work stuff";
+            $name = "Bojana";
             $id = 1;
             $number = 200808;
             $test_class = new Course($name, $id, $number);
             $test_class->save();
-            $name2 = "Home stuff";
+            $name2 = "Epicodus";
             $id2 = 2;
             $number2 = 200808;
             $test_class2 = new Course($name2, $id2,$number2);
@@ -126,7 +126,7 @@
         {
             //Arrange
             //We need some categories saved into the database so that we can make sure our deleteAll method removes them all.
-            $name = "Wash the dog";
+            $name = "Math";
             $id = 1;
             $number = 200808;
             $test_class = new Course($name, $id, $number);
@@ -149,12 +149,12 @@
         {
             //Arrange
             //Create and save 2 categories.
-            $name = "Wash the dog";
+            $name = "Math";
             $id = 1;
             $number = 200808;
             $test_class = new Course($name, $id, $number);
             $test_class->save();
-            $name2 = "Home stuff";
+            $name2 = "Home Economics";
             $id2 = 2;
             $number2 = 200808;
             $test_class2 = new Course($name2, $id2, $number);
@@ -167,26 +167,26 @@
         function testUpdate()
         {
             //Arrange
-            $name = "Work stuff";
+            $name = "Bojana";
             $id = 1;
             $number = 200808;
             $test_class = new Course($name, $id, $number);
             $test_class->save();
-            $new_name = "Home stuff";
+            $new_name = "Home Economics";
             //Act
             $test_class->update($new_name);
             //Assert
-            $this->assertEquals("Home stuff", $test_class->getName());
+            $this->assertEquals("Home Economics", $test_class->getName());
         }
         function testDeleteCategory()
         {
             //Arrange
-            $name = "Work stuff";
+            $name = "Bojana";
             $id = 1;
             $number = 200808;
             $test_class = new Course($name, $id, $number);
             $test_class->save();
-            $name2 = "Home stuff";
+            $name2 = "Home Economics";
             $number2 = 200576808;
             $id2 = 2;
             $test_class2 = new Course($name2, $id2, $number2);
@@ -201,7 +201,7 @@
         {
             //Arrange
             //We need a class and a student saved
-            $name = "Work stuff";
+            $name = "Bojana";
             $id = 1;
             $number = 200808;
             $test_class = new Course($name, $id, $number);
@@ -216,52 +216,56 @@
 
             $this->assertEquals($test_class->getStudents(), [$test_student]);
         }
-        // //Now we write a test for the getStudents method since we need it to be able to test the Add Student method.
-        // function testGetStudents()
-        // {
-        //     //Arrange
-        //     //start with a class
-        //     $name = "Home stuff";
-        //     $id = 1;
-        //     $test_class = new Course($name, $id, $number);
-        //     $test_class->save();
-        //     //create 2 students to assign to it.
-        //     $description = "Wash the dog";
-        //     $id2 = 2;
-        //     $test_student = new Student($description, $id2);
-        //     $test_student->save();
-        //     $description2 = "Take out the trash";
-        //     $id3 = 3;
-        //     $test_student2 = new Student($description2, $id3);
-        //     $test_student2->save();
-        //     //Act
-        //     //add both students to the class
-        //     $test_class->addStudent($test_student);
-        //     $test_class->addStudent($test_student2);
-        //     //Assert
-        //     //we should get both of them back when we call getStudents on the test class.
-        //     $this->assertEquals($test_class->getStudents(), [$test_student, $test_student2]);
-        // }
-        // //When we call delete on a class it should delete all mention of that class from both the categories table and the join table.
-        // //if we delete the class 'work stuff' and then later ask the 'file reports' student which categories it belongs to,
-        // //we wouldn't want it to tell us it is assigned to one that doesn't exist anymore.
-        // //we don't want to delete the student, just any mention of the class it was associated with in the join table.
+        //Now we write a test for the getStudents method since we need it to be able to test the Add Student method.
+        function testGetStudents()
+        {
+            //Arrange
+            //start with a class
+            $name = "Home Economics";
+            $id = 1;
+            $number = 224242;
+            $test_class = new Course($name, $id, $number);
+            $test_class->save();
+            //create 2 students to assign to it.
+            $date='1909-09-08 12:00:00';
+            $description = "Math";
+            $id2 = 2;
+            $test_student = new Student($description, $id2, $date);
+            $test_student->save();
+            $description2 = "Sally";
+            $id3 = 3;
+            $test_student2 = new Student($description2, $id3, $date);
+            $test_student2->save();
+            //Act
+            //add both students to the class
+            $test_class->addStudent($test_student);
+            $test_class->addStudent($test_student2);
+            //Assert
+            //we should get both of them back when we call getStudents on the test class.
+            $this->assertEquals($test_class->getStudents(), [$test_student, $test_student2]);
+        }
+        //When we call delete on a class it should delete all mention of that class from both the categories table and the join table.
+        //if we delete the class 'work stuff' and then later ask the 'file reports' student which categories it belongs to,
+        //we wouldn't want it to tell us it is assigned to one that doesn't exist anymore.
+        //we don't want to delete the student, just any mention of the class it was associated with in the join table.
         // function testDelete()
         // {
         //     //Arrange
-        //     $name = "Work stuff";
+        //     $name = "Bojana";
         //     $id = 1;
+        //     $number = 5235235;
         //     $test_class = new Course($name, $id, $number);
         //     $test_class->save();
         //     $description = "File reports";
         //     $id2 = 2;
-        //     $test_student = new Student($description, $id2);
+        //     $date='1909-09-08 12:00:00';
+        //     $test_student = new Student($description, $id2, $date);
         //     $test_student->save();
         //     //Act
         //     $test_class->addStudent($test_student);
         //     $test_class->delete();
         //     //Assert
-        //     $this->assertEquals([], $test_student->getCourse());
+        //     $this->assertEquals([], $test_student->getCourses());
         // }
     }
 ?>
