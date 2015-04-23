@@ -2,11 +2,11 @@
 
 ##Bojana Skarich and Abeer Khakwani
 
-###March 23rd, 2015
+###March 24th, 2015
 
 ###Description
 
-This app allows users to create a list of tasks and a list of categories. Users can add a category to each task, and when a user clicks on a category, a list of tasks is displayed. A list of categories is displayed when a user clicks on a category. This is illustrative of a many-to-many relationship between database tables. 
+This app keeps track of students and courses. Users can add students to a course and can list all of the courses that a particular student is taking. This is a many-to-many relationship between the two tables in the database. Join statements are used to connect the two tables. 
 
 ###Technologies Used:
 
@@ -32,7 +32,7 @@ This app allows users to create a list of tasks and a list of categories. Users 
 
 ###The MIT License (MIT)
 
-Copyright (c) 2015 Bojana Skarich
+Copyright (c) 2015 Bojana Skarich and Abeer Khakwani
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
